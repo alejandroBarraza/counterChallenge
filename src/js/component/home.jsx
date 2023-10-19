@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react'
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
+import { SecondsCounter } from './SecondsCounter'
+import '../../styles/index.css'
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+  const [seconds, setSeconds] = React.useState(0)
 
-export default Home;
+  React.useEffect(() => {
+    const timerId = setInterval(() => {
+      setSeconds((prev) => prev + 1)
+    }, 1000)
+
+    return () => clearInterval(timerId)
+  })
+
+  const formatCountdown = (countdown) => {
+    // add 'x amount' of 0(6) to the last countdown and return the value
+    const formattedCountdown = countdown.toString().padStart(6, '0')
+    return formattedCountdown
+  }
+
+  return <SecondsCounter seconds={formatCountdown(seconds)} />
+}
+
+export default Home
