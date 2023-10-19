@@ -11,7 +11,6 @@ const Home = () => {
   const [isActive, setisActive] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
 
-  // Efecto contador
   useEffect(() => {
     const timerId = setInterval(() => {
       setSeconds((prev) => prev + 1)
@@ -20,7 +19,7 @@ const Home = () => {
     return () => clearInterval(timerId)
   }, [])
 
-  // Efecto contador bonus (decremento)
+  // bonus effect
   useEffect(() => {
     let intervalId
     if (isActive) {
@@ -42,7 +41,7 @@ const Home = () => {
     if (timer === alertTime) {
       setShowAlert(true)
 
-      // Ocultar la alerta después de 5 segundos
+      // hide alarm after 5 sec
       setTimeout(() => {
         setShowAlert(false)
       }, 5000)
